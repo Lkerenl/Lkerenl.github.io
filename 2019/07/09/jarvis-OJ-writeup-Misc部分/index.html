@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="简单网管协议发现snmp协议，跟踪UDP流可发现flag{077149a68b9d4f25f52bb11530f44028} 炫酷的战队Logo下载看到是张bmp图片，头部有缺失，补上424D，保存发现只是张普通的图片，发现最后有IEND的png结尾，使用dd将其裁剪出来 1dd if=./phrack.bmp of=out.png ibs=0x1171a9 skip=1 count=1  发现i">
+<meta name="keywords" content="jarvisOJ,Misc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jarvis OJ writeup (Misc部分)">
+<meta property="og:url" content="https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/index.html">
+<meta property="og:site_name" content="Lkerenl&#39;Blog 你的本质">
+<meta property="og:description" content="简单网管协议发现snmp协议，跟踪UDP流可发现flag{077149a68b9d4f25f52bb11530f44028} 炫酷的战队Logo下载看到是张bmp图片，头部有缺失，补上424D，保存发现只是张普通的图片，发现最后有IEND的png结尾，使用dd将其裁剪出来 1dd if=./phrack.bmp of=out.png ibs=0x1171a9 skip=1 count=1  发现i">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/43D73CF5-1166-45A4-916A-DD6608F518BD.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/28493DD3-19B0-4BFB-BA6B-9F75049E29A5.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/AB2D0376-4FAB-4B68-A2E8-E9B013D9D4C2.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/B29669F8-9B3A-479E-BD59-2944F4B82507.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/95DE1B46-85BD-4386-9D4C-E24E7A6E59AF.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/F29E6C85-6FB7-497C-AC44-76F683AD01CB.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/812B682A-DC9F-412E-A085-9931A7BD5430.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/9FAF7A68-2F3C-4528-A820-AE004CD204F6.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/B3F25C00-CBD9-45E9-B32C-E9F8431870C9.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/16AD36BE-EA28-4642-8C9E-A73983FD66CE.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/AEF4C0FD-4FF9-4A4F-BAE9-966C4D956AB9.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/C2B91023-FEDC-4F21-984D-632C42052014.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/711134FB-F7DA-4C82-A282-94EAA267F4FB.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/9ACBB75F-607F-4C5A-8F35-E1E9711DE14C.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/208E0EFD-C4A9-4123-81C1-47520A5B071B.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/405853BA-BC58-40AE-9456-61E7A943AB9B.png">
+<meta property="og:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/22F5B23A-AEEC-43C8-9223-4A2D1CF7ACEF.png">
+<meta property="og:updated_time" content="2019-07-09T09:07:31.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jarvis OJ writeup (Misc部分)">
+<meta name="twitter:description" content="简单网管协议发现snmp协议，跟踪UDP流可发现flag{077149a68b9d4f25f52bb11530f44028} 炫酷的战队Logo下载看到是张bmp图片，头部有缺失，补上424D，保存发现只是张普通的图片，发现最后有IEND的png结尾，使用dd将其裁剪出来 1dd if=./phrack.bmp of=out.png ibs=0x1171a9 skip=1 count=1  发现i">
+<meta name="twitter:image" content="https://lkerenl.github.io/images/jarvis-OJ-Misc/43D73CF5-1166-45A4-916A-DD6608F518BD.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>jarvis OJ writeup (Misc部分)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/07/09/jarvis-OJ-writeup-Web部分/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/07/09/从pwnable-tw-calc看数组越界造成的任意地址读写/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&text=jarvis OJ writeup (Misc部分)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&is_video=false&description=jarvis OJ writeup (Misc部分)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jarvis OJ writeup (Misc部分)&body=Check out this article: https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&name=jarvis OJ writeup (Misc部分)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单网管协议"><span class="toc-number">1.</span> <span class="toc-text">简单网管协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#炫酷的战队Logo"><span class="toc-number">2.</span> <span class="toc-text">炫酷的战队Logo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scan"><span class="toc-number">3.</span> <span class="toc-text">Scan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程登录协议"><span class="toc-number">4.</span> <span class="toc-text">远程登录协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell流量分析"><span class="toc-number">5.</span> <span class="toc-text">shell流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell分析"><span class="toc-number">6.</span> <span class="toc-text">webshell分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">7.</span> <span class="toc-text">flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc100"><span class="toc-number">8.</span> <span class="toc-text">misc100</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#you-need-python"><span class="toc-number">9.</span> <span class="toc-text">you_need_python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Struts2漏洞"><span class="toc-number">10.</span> <span class="toc-text">Struts2漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WPA2"><span class="toc-number">11.</span> <span class="toc-text">WPA2</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        jarvis OJ writeup (Misc部分)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lkerenl'Blog 你的本质</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-07-09T06:49:08.000Z" itemprop="datePublished">2019-07-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/CTF-wirteup/">CTF wirteup</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Misc/">Misc</a>, <a class="tag-link" href="/tags/jarvisOJ/">jarvisOJ</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="简单网管协议"><a href="#简单网管协议" class="headerlink" title="简单网管协议"></a>简单网管协议</h2><p>发现snmp协议，跟踪UDP流可发现<br><img src="/images/jarvis-OJ-Misc/43D73CF5-1166-45A4-916A-DD6608F518BD.png" alt="简单网管协议"><br>flag{077149a68b9d4f25f52bb11530f44028}</p>
+<h2 id="炫酷的战队Logo"><a href="#炫酷的战队Logo" class="headerlink" title="炫酷的战队Logo"></a>炫酷的战队Logo</h2><p>下载看到是张bmp图片，头部有缺失，补上424D，保存发现只是张普通的图片，发现最后有IEND的png结尾，使用dd将其裁剪出来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=./phrack.bmp of=out.png ibs=0x1171a9 skip=1 count=1</span><br></pre></td></tr></table></figure>
+
+<p>发现ihdr有错误，根据ihdr crc32爆破出相应的w,h</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./out.png"</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line">    f.close()</span><br><span class="line">crc = struct.unpack(<span class="string">"&gt;I"</span>,data[<span class="number">29</span>:<span class="number">33</span>])[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">for</span> w <span class="keyword">in</span> range(<span class="number">1024</span>):</span><br><span class="line">    <span class="keyword">for</span> h <span class="keyword">in</span> range(<span class="number">1024</span>):</span><br><span class="line">        ihdr = <span class="string">b"IHDR"</span>+ struct.pack(<span class="string">"&gt;I"</span>,w) + struct.pack(<span class="string">"&gt;I"</span>,h)+<span class="string">b"\x08\x02\x00\x00\x00"</span></span><br><span class="line">        <span class="keyword">if</span> crc == binascii.crc32(ihdr):</span><br><span class="line">            data = data[:<span class="number">12</span>]+ihdr+data[<span class="number">29</span>:]</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"out2.png"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(data)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line"><span class="comment">#PCTF&#123;CrC32_i5_Useful_iN_pNG&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Scan"><a href="#Scan" class="headerlink" title="Scan"></a>Scan</h2><p>Wireshark打开，发现开头是个icmp，推测每次扫描之前都要用icmp测试一下，然后过滤icmp<br><img src="/images/jarvis-OJ-Misc/28493DD3-19B0-4BFB-BA6B-9F75049E29A5.png" alt="Scan"><br>从后往前一个个试，最后发现为155989这个</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -n 155989|openssl dgst -sha256</span><br><span class="line"></span><br><span class="line"><span class="comment">#PCTF&#123;0be2407512cc2a40bfb570464757fd56cd0a1d33f0bf3824dfed4f0119133c12&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="远程登录协议"><a href="#远程登录协议" class="headerlink" title="远程登录协议"></a>远程登录协议</h2><p>过滤telnet追踪TCP流，发现<br><img src="/images/jarvis-OJ-Misc/AB2D0376-4FAB-4B68-A2E8-E9B013D9D4C2.png" alt="远程登陆协议"><br>FLAG:f69dd04e38ef85e38b2f148475ce32bc</p>
+<h2 id="shell流量分析"><a href="#shell流量分析" class="headerlink" title="shell流量分析"></a>shell流量分析</h2><p>追踪TCP流发现一个python脚本 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line">__author__ = <span class="string">'Aklis'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(encrypted, passphrase)</span>:</span></span><br><span class="line">  IV = encrypted[:<span class="number">16</span>]</span><br><span class="line">  aes = AES.new(passphrase, AES.MODE_CBC, IV)</span><br><span class="line">  <span class="keyword">return</span> aes.decrypt(encrypted[<span class="number">16</span>:])</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(message, passphrase)</span>:</span></span><br><span class="line">  IV = message[:<span class="number">16</span>]</span><br><span class="line">  length = <span class="number">16</span></span><br><span class="line">  count = len(message)</span><br><span class="line">  padding = length - (count % length)</span><br><span class="line">  message = message + <span class="string">'\0'</span> * padding</span><br><span class="line">  aes = AES.new(passphrase, AES.MODE_CBC, IV)</span><br><span class="line">  <span class="keyword">return</span> aes.encrypt(message)</span><br><span class="line"></span><br><span class="line">IV = <span class="string">'YUFHJKVWEASDGQDH'</span></span><br><span class="line"></span><br><span class="line">message = IV + <span class="string">'flag is hctf&#123;xxxxxxxxxxxxxxx&#125;'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> len(message)</span><br><span class="line"></span><br><span class="line">example = encrypt(message, <span class="string">'Qq4wdrhhyEWe4qBF'</span>)</span><br><span class="line"><span class="keyword">print</span> example</span><br><span class="line">example = decrypt(example, <span class="string">'Qq4wdrhhyEWe4qBF'</span>) </span><br><span class="line"><span class="keyword">print</span> example</span><br></pre></td></tr></table></figure>
+
+<p>后边发现密文：</p>
+<p><img src="/images/jarvis-OJ-Misc/B29669F8-9B3A-479E-BD59-2944F4B82507.png" alt="shell流量分析"><br>将脚本改一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> Crypto <span class="keyword">import</span> Random</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(encrypted, passphrase)</span>:</span></span><br><span class="line">  IV = encrypted[:<span class="number">16</span>]</span><br><span class="line">  aes = AES.new(passphrase, AES.MODE_CBC, IV)</span><br><span class="line">  <span class="keyword">return</span> aes.decrypt(encrypted[<span class="number">16</span>:])</span><br><span class="line"></span><br><span class="line">IV = <span class="string">'YUFHJKVWEASDGQDH'</span></span><br><span class="line"></span><br><span class="line">message = <span class="string">"mbZoEMrhAO0WWeugNjqNw3U6Tt2C+rwpgpbdWRZgfQI3MAh0sZ9qjnziUKkV90XhAOkIs/OXoYVw5uQDjVvgNA=="</span>.decode(<span class="string">"base64"</span>)</span><br><span class="line"></span><br><span class="line">example = decrypt(message, <span class="string">'Qq4wdrhhyEWe4qBF'</span>)</span><br><span class="line"><span class="keyword">print</span> example</span><br><span class="line"></span><br><span class="line"><span class="comment">#flag is hctf&#123;n0w_U_w111_n0t_f1nd_me&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="webshell分析"><a href="#webshell分析" class="headerlink" title="webshell分析"></a>webshell分析</h2><p>分析流量发现一个访问了一个ironshell.php的文件，猜测这就是webshell   。用如下规则过滤出来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.addr == 115.28.102.80 &amp;&amp; http.request.uri matches &quot;ironshell.php&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/jarvis-OJ-Misc/95DE1B46-85BD-4386-9D4C-E24E7A6E59AF.png" alt="webshell分析"><br>发现最后一个包的url里有个flag猜测这个包里就有要的关键数据，跟踪TCP流将其数据dump出来保存到一个html里<br><img src="/images/jarvis-OJ-Misc/F29E6C85-6FB7-497C-AC44-76F683AD01CB.png" alt="webshell分析"><br>发现疑似flag的东西，解base64发现是个url访问是张二维码，扫码可得flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  findwebshell <span class="built_in">echo</span> <span class="string">"aHR0cHM6Ly9kbi5qYXJ2aXNvai5jb20vY2hhbGxlbmdlZmlsZXMvQWJUekEyWXRlRmpHaFBXQ2Z0cmFvdVZEM0I2ODRhOUEuanBn"</span>|base64 -D</span><br><span class="line">https://dn.jarvisoj.com/challengefiles/AbTzA2YteFjGhPWCftraouVD3B684a9A.jpg</span><br><span class="line"><span class="comment">#flag&#123;1542ae716e47576e1f3e36326a23e72e&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="flag"><a href="#flag" class="headerlink" title="flag"></a>flag</h2><p>binwalk分析下发现有个压缩包</p>
+<p><img src="/images/jarvis-OJ-Misc/812B682A-DC9F-412E-A085-9931A7BD5430.png" alt="flag"><br>猜测LSB隐写，stegsolve打开发现一个zip</p>
+<p><img src="/images/jarvis-OJ-Misc/9FAF7A68-2F3C-4528-A820-AE004CD204F6.png" alt="flag"><br>Dump发现打不开，再来binwalk一下，解出来一个elf文件。。。<br><img src="/images/jarvis-OJ-Misc/B3F25C00-CBD9-45E9-B32C-E9F8431870C9.png" alt="flag"><br>ida打开<br><img src="/images/jarvis-OJ-Misc/16AD36BE-EA28-4642-8C9E-A73983FD66CE.png" alt="flag"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#hctf&#123;dd0gf4c3tok3yb0ard4g41n~~~&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="misc100"><a href="#misc100" class="headerlink" title="misc100"></a>misc100</h2><p>下来看看是个apk，直接用dex2jar转诊jar然后jd-gui打开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  easy100 d2j-dex2jar.sh easy100.apk</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/jarvis-OJ-Misc/AEF4C0FD-4FF9-4A4F-BAE9-966C4D956AB9.png" alt="misc100"><br>直接就看到这个，猜测这应该就是加密之后的，继续看</p>
+<p><img src="/images/jarvis-OJ-Misc/C2B91023-FEDC-4F21-984D-632C42052014.png" alt="misc100"><br>这里调用了MainActivity.a，两个参数，一个是MainActiviry.a(this.a)的返回值，一个是输入的字符串<br>然后看看c.a()都干了啥，c这个类里有2个叫a的方法，应该是重写的，先看2个参数的那个</p>
+<p><img src="/images/jarvis-OJ-Misc/711134FB-F7DA-4C82-A282-94EAA267F4FB.png" alt="misc100"><br>New了一个a类，</p>
+<p><img src="/images/jarvis-OJ-Misc/9ACBB75F-607F-4C5A-8F35-E1E9711DE14C.png" alt="misc100"><br>所以当初调用的时候第一个参数是key，第二个参数就是明文然而我并不知道第一iv是啥，一度以为是空字符串的md5…本垃圾不懂java，不太懂，，研究了一下，貌似这个MaivAvtive.p()没人调用，就猜第一个参数应该是这个v。<br>然后将v的每两位换一下。写个脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> struct <span class="keyword">import</span> pack <span class="keyword">as</span> p</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"./easy100/assets/url.png"</span>,<span class="string">"rb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">    change_key = f.read()[<span class="number">144</span>:<span class="number">144</span>+<span class="number">16</span>]</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">key = bytearray()</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">16</span>,<span class="number">2</span>):</span><br><span class="line">    key.append(change_key[_+<span class="number">1</span>])</span><br><span class="line">    key.append(change_key[_])</span><br><span class="line"></span><br><span class="line">a = [<span class="number">21</span>, <span class="number">-93</span>, <span class="number">-68</span>, <span class="number">-94</span>, <span class="number">86</span>, <span class="number">117</span>, <span class="number">-19</span>, <span class="number">-68</span>, <span class="number">-92</span>, <span class="number">33</span>, <span class="number">50</span>, <span class="number">118</span>, <span class="number">16</span>, <span class="number">13</span>, <span class="number">1</span>, <span class="number">-15</span>, <span class="number">-13</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">103</span>, <span class="number">-18</span>, <span class="number">81</span>, <span class="number">30</span>, <span class="number">68</span>, <span class="number">54</span>, <span class="number">-93</span>, <span class="number">44</span>, <span class="number">-23</span>, <span class="number">93</span>, <span class="number">98</span>, <span class="number">5</span>, <span class="number">59</span>]</span><br><span class="line">b = <span class="string">b""</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> a:</span><br><span class="line">    b+=p(<span class="string">"b"</span>,_ )</span><br><span class="line"></span><br><span class="line">c = AES.new(bytes(key),AES.MODE_ECB)</span><br><span class="line">m = c.decrypt(b)</span><br><span class="line">print(m)</span><br><span class="line"><span class="comment">#LCTF&#123;1t's_rea1ly_an_ea3y_ap4&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="you-need-python"><a href="#you-need-python" class="headerlink" title="you_need_python"></a>you_need_python</h2><p>解压一看是个脚本和一个乱码文件，文件名根据提示rfc4042知道那个文件是utf9编码的解码后是个字符串加加减减的，然后flag.py里的是python的字节码，写个脚本将其转成pyc</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_pyc</span><span class="params">(code,filename)</span>:</span></span><br><span class="line">    data = bytearray(imp.get_magic())</span><br><span class="line">    data += struct.pack(<span class="string">"&lt;L"</span>,int(time.time()))</span><br><span class="line">    data += code</span><br><span class="line">    <span class="keyword">with</span> open(filename,<span class="string">"wb"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(data)</span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line">code = zlib.decompress(base64.b64decode(<span class="string">'eJxtVP9r21YQvyd/ieWm66Cd03QM1B8C3pggUuzYCSWstHSFQijyoJBhhGq9OXJl2ZFeqAMOK6Q/94f9Ofvn1s+d7Lgtk/3O997du/vc584a0eqpYP2GVfwDEeOrKCU6g2LRRyiK4oooFsVVUSqkqxTX6J1F+SfSNYrrdKPorC76luhbpOEGCZNFZw2KG3Rmk26QtuXi3xTb7ND6/aVu0g2RuvhEcZNut5lAGbTvAFbyH57TkYLKy8J6xpDvQxiiiaIlcdqJxVcHbXY6bXNlZgviPCrO0+StqfKd88gzNh/qRZyMdWHE29TZZvIkG7eZFRGGRcBmsXJaUoKCQ9fWKHwSqNeKFnsM5PnwJ7q2aKk4AFhcWtQCh+ChB5+Lu/RmyYUxmtOEYxas7i/2iuR7Ti14OEOSmU0RADd4+dQzbM1FJhukAUeQ+kZROuLyioagrau76kc1slY1NNaY/y3LAxDQBrAICJisV2hMdF2lxQcyFuMoqcX3+TCl6xotqzSpkqmxYVmjXVjAXiwBsEfBrd1VvTvLCj2EXRnhoryAKdpxcIgJcowUB68yAx/tlCAuPHqDuZo0CN3CUGHwkPhGMA7aXMfphjbmQLhLhJcHa0a+mpgB191c1U1lnHJQbgkHx+WGxeJbejnpkzSavo2jkxZ7i725npGAaTc8FXmUjbUETHUmkxXN5zqL5WiWxwE7Bc11yyYzNJpN02jerq+DzNNodfxOX8kE4FcmYKscDdYD1oPGGucXYNmgs1F+NTf3GOt3Mg7b+NTVruqoQyX1hOEUacKw+AGbP38ZOq9THRXaSbL5pXGQ8bho/Z/lrzQaHxdoCrlev+t6nZ7re57r+57rHXag93Deh37k+vuw9zorO/Qj/B50cAf2oyOsvut3D+ADWxdxfN/1Drqu39mHzvcRswv/Hvz7sHeg9w8Qzy99DzuFwxhPhs6zWTbOI3OZRiaZZcVj5wVwOklx7OwVxR47PR46r/SVM8ulBJic9zku/eqY/MqJxiDj+Gd55wS3f35pbLCzHoEwzKKpDkN5i+TR+1AYCWTo5IV0Z0P9H3phDDd6lMzPdS5bbo9eJGbTsW9nbDqLL1N9Iq+rRxDbll2x67a9Lf27hw5uK1s1rZr6DOPF+FI='</span>))</span><br><span class="line">to_pyc(code,<span class="string">"dump.pyc"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后使用 uncompyle6 将pyc反编译乘py文件:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">➜  you_need_python uncompyle6 ./dump.pyc &gt;source.py</span><br><span class="line">➜  you_need_python cat ./source.py</span><br><span class="line"><span class="comment"># uncompyle6 version 3.3.1</span></span><br><span class="line"><span class="comment"># Python bytecode 2.7 (62211)</span></span><br><span class="line"><span class="comment"># Decompiled from: Python 3.7.1 (default, Nov  6 2018, 18:46:03)</span></span><br><span class="line"><span class="comment"># [Clang 10.0.0 (clang-1000.11.45.5)]</span></span><br><span class="line"><span class="comment"># Compiled at: 2019-04-23 15:00:53</span></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sha1</span><span class="params">(string)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> hashlib.sha1(string).hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(strSHA1)</span>:</span></span><br><span class="line">    r = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> strSHA1:</span><br><span class="line">        r += int(<span class="string">'0x%s'</span> % i, <span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(plain, key)</span>:</span></span><br><span class="line">    keySHA1 = sha1(key)</span><br><span class="line">    intSHA1 = calc(keySHA1)</span><br><span class="line">    r = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(plain)):</span><br><span class="line">        r.append(ord(plain[i]) + int(<span class="string">'0x%s'</span> % keySHA1[i % <span class="number">40</span>], <span class="number">16</span>) - intSHA1)</span><br><span class="line">        intSHA1 = calc(sha1(plain[:i + <span class="number">1</span>])[:<span class="number">20</span>] + sha1(str(intSHA1))[:<span class="number">20</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (<span class="string">''</span>).join(map(<span class="keyword">lambda</span> x: str(x), r))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    key = raw_input(<span class="string">'[*] Please input key:'</span>)</span><br><span class="line">    plain = raw_input(<span class="string">'[*] Please input flag:'</span>)</span><br><span class="line">    encryptText = encrypt(plain, key)</span><br><span class="line">    cipherText = <span class="string">'-185-147-211-221-164-217-188-169-205-174-211-225-191-234-148-199-198-253-175-157-222-135-240-229-201-154-178-187-244-183-212-222-164'</span></span><br><span class="line">    <span class="keyword">if</span> encryptText == cipherText:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'[&gt;] Congratulations! Flag is: %s'</span> % plain</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'[!] Key or flag is wrong, try again:)'</span></span><br><span class="line">        exit()</span><br><span class="line"><span class="comment"># okay decompiling ./dump.pyc</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到key为utf9解出的那串字符串，然后sha1算hash再每一个字符按16进制加起来，那么我们现在知道keySHA和intSHA1，那么flag的第一位就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x + int(keySHA1[0],16) - intSHA1 = -185</span><br></pre></td></tr></table></figure>
+
+<p>解方程就能求得flag了，所以现在的关键就是解出key</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> utf9</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getkey</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'./key_is_here_but_do_you_know_rfc4042'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = utf9.utf9decode(f.read())</span><br><span class="line">        f.close()</span><br><span class="line">    print(data)</span><br><span class="line"></span><br><span class="line"><span class="comment">#key: _____*((__//__+___+______-____%____)**((___%(___-_))+________+(___%___+_____+_______%__+______-(______//(_____%___)))))+__*(((________/__)+___%__+_______-(________//____))**(_*(_____+_____)+_______+_________%___))+________*(((_________//__+________%__)+(_______-_))**((___+_______)+_________-(______//__)))+_______*((___+_________-(______//___-_______%__%_))**(_____+_____+_____))+__*(__+_________-(___//___-_________%_____%__))**(_________-____+_______)+(___+_______)**(________%___%__+_____+______)+(_____-__)*((____//____-_____%____%_)+_________)**(_____-(_______//_______+_________%___)+______)+(_____+(_________%_______)*__+_)**_________+_______*(((_________%_______)*__+_______-(________//________))**_______)+(________/__)*(((____-_+_______)*(______+____))**___)+___*((__+_________-_)**_____)+___*(((___+_______-______/___+__-_________%_____%__)*(___-_+________/__+_________%_____))**__)+(_//_)*(((________%___%__+_____+_____)%______)+_______-_)**___+_____*((______/(_____%___))+_______)*((_________%_______)*__+_____+_)+___//___+_________+_________/___</span></span><br></pre></td></tr></table></figure>
+
+<p>一开始以为是xxfuck之类的、、最后查了一下发现就是单纯的下划线的算式，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> utf9</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sha1</span><span class="params">(string)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> hashlib.sha1(string).hexdigest()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(strSHA1)</span>:</span></span><br><span class="line">    r = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> strSHA1:</span><br><span class="line">        r += int(<span class="string">'0x%s'</span> % i, <span class="number">16</span>)</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getkey</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'./key_is_here_but_do_you_know_rfc4042'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = utf9.utf9decode(f.read())</span><br><span class="line">        f.close()</span><br><span class="line">    _ = <span class="number">1</span></span><br><span class="line">    __ = <span class="number">2</span></span><br><span class="line">    ___ = <span class="number">3</span></span><br><span class="line">    ____ = <span class="number">4</span></span><br><span class="line">    _____ = <span class="number">5</span></span><br><span class="line">    ______ = <span class="number">6</span></span><br><span class="line">    _______ = <span class="number">7</span></span><br><span class="line">    ________ = <span class="number">8</span></span><br><span class="line">    _________ = <span class="number">9</span></span><br><span class="line">    __________ = <span class="number">0</span></span><br><span class="line">    key = eval(data)</span><br><span class="line">    <span class="keyword">return</span> hex(key)[<span class="number">2</span>:].decode(<span class="string">'hex'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(key)</span>:</span></span><br><span class="line">    c = <span class="string">'-185-147-211-221-164-217-188-169-205-174-211-225-191-234-148-199-198-253-175-157-222-135-240-229-201-154-178-187-244-183-212-222-164'</span></span><br><span class="line">    c = [int(c[x:x+<span class="number">4</span>]) <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">0</span>,len(c),<span class="number">4</span>)]</span><br><span class="line">    keySHA1 = sha1(key)</span><br><span class="line">    intSHA1 = calc(keySHA1)</span><br><span class="line">    m = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(len(c)):</span><br><span class="line">        m += chr(c[_] + intSHA1 - int(<span class="string">'0x%s'</span> % keySHA1[_ % <span class="number">40</span>], <span class="number">16</span>))</span><br><span class="line">        intSHA1 = calc(sha1(m[:_+<span class="number">1</span>])[:<span class="number">20</span>] + sha1(str(intSHA1))[:<span class="number">20</span>])</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line">key = getkey()</span><br><span class="line"><span class="keyword">print</span> key</span><br><span class="line">m = decrypt(key)</span><br><span class="line"><span class="keyword">print</span> m</span><br><span class="line"><span class="comment">#key: I_4m-k3y</span></span><br><span class="line"><span class="comment">#flag&#123;Lif3_i5_5h0r7_U_n33d_Py7h0n&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Struts2漏洞"><a href="#Struts2漏洞" class="headerlink" title="Struts2漏洞"></a>Struts2漏洞</h2><p>一说structs2就想到反序列化，但是本垃圾并不懂java，更别说structs2了，查了一下原理，看到这个<br><a href="https://blog.csdn.net/wpydaguan/article/details/45220025" target="_blank" rel="noopener">https://blog.csdn.net/wpydaguan/article/details/45220025</a></p>
+<p><img src="/images/jarvis-OJ-Misc/208E0EFD-C4A9-4123-81C1-47520A5B071B.png" alt="Struts2漏洞"><br>于是猜测，url里有action关键字，用wireshark的正则匹配一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http and !(http.request.uri matches &quot;http://.*\.jpg.*&quot; or http.request.uri matches &quot;http://.*\.gif.*&quot; ) and http.request.uri matches &quot;.*action.*&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/jarvis-OJ-Misc/405853BA-BC58-40AE-9456-61E7A943AB9B.png" alt="Struts漏洞"><br>不多一个个看：</p>
+<p><img src="/images/jarvis-OJ-Misc/22F5B23A-AEEC-43C8-9223-4A2D1CF7ACEF.png" alt="Struts漏洞"><br>FLAG:E3274BE5C857FB42AB72D786E281B4B8</p>
+<h2 id="WPA2"><a href="#WPA2" class="headerlink" title="WPA2"></a>WPA2</h2><p>首先nc连上去看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ nc pwn.jarvisoj.com 9893</span><br><span class="line">Welcome to HuWang Bei WPA2 Simulation System.. Initilizing Parameters..</span><br><span class="line"></span><br><span class="line">SSID = HuWang</span><br><span class="line"></span><br><span class="line">PSK = eygqW2NkTrmXfV94</span><br><span class="line"></span><br><span class="line">AP_MAC = E2:73:76:65:9A:F0</span><br><span class="line"></span><br><span class="line">AP_Nonce = fa2e6fbd9c1248451fba5f112773528f52907c795d89ba32102e00f60074922e</span><br><span class="line"></span><br><span class="line">STA_MAC = E9:88:69:8F:26:06</span><br><span class="line"></span><br><span class="line">STA_Nonce = 85dd88520e836988028459c710284424a15af2b2884be36623d9d9b8c90cf2ab</span><br><span class="line"></span><br><span class="line">CCMP Encrypted Packet = 88423a01e988698f2606e27376659af0e27376659af060920000319c00200f00000023102cb86f5f401b2333e536a9148311f13b4d31e3c6556b3f0c7f6a3c4d058ce7d0ea87e2131d46a3</span><br><span class="line"></span><br><span class="line">Input decrypted challenge value in Packet:</span><br></pre></td></tr></table></figure>
+
+<p>google一下，研究了半天懂了一点，WPA2是通过SSID与PSK生成一个PMK，然后通过PMK, AP nonce, STA nonce (SNonce), AP MAC address , and STA MAC address生成PTK，PTK又分为若干部分：<br>EAPOL-Key Confirm Key、EAPOL-Key Encrypt Key用于EAPOL-Key的四次握手，<br>(TKIP|CCMP) Temporal Key 参与报文加密解密<br>TKIP MIC Key(for Authenticator Tx)、TKIP MIC Key(for Supplicant Tx)用于TKIP协议。<br>看到题目给的信息、我估计就是要算那个<code>(TKIP|CCMP) Temporal Key</code>了。<br>首先是通过SSID与PSK计算PMK，这里可以用<a href="http://jorisvr.nl/wpapsk.html" target="_blank" rel="noopener">WPA key calculation: From passphrase to hex</a>也可以自己写个脚本具体的算法可以看 <a href="https://www.ietf.org/rfc/rfc2898.txt" target="_blank" rel="noopener">rfc2898</a> 的PBKDF2那一节…<br>然后我写了一半发现python3有自带的。。。。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PMK = hashlib.pbkdf2_hmac(<span class="string">"sha1"</span>, PSK.encode(), SSID.encode(), <span class="number">4096</span>, <span class="number">256</span>)</span><br></pre></td></tr></table></figure>
+
+<p>PTK的算法见<a href="http://ieee802.org/16/liaison/docs/80211-05_0123r1.pdf" target="_blank" rel="noopener">IEEE 802.11-04/0123r1</a> 46页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">802.11i-PRF(K, A, B, Len) R ← “” for i ← 0 to ((Len+159)/160) – 1) do R ← R || HMAC-SHA1(K, A || B || i) return Truncate-to-len(R, Len)</span><br><span class="line">PTK ← 802.11i-PRF(PMK, “Pairwise key expansion”, min(AP-Addr, STA-Addr) || max(AP-Addr, STA-Addr) || min(ANonce, SNonce) || max( ANonce, SNonce), 384)</span><br></pre></td></tr></table></figure>
+
+<p>写了脚本计算出了Temporal Key然后还没完的呢。<br>根据<a href="https://tools.ietf.org/html/rfc3610" target="_blank" rel="noopener">RFC 3610 </a>的说法，要解密CCM加密的密文，要提供三个东西，<br>密钥，随机数，附加认证数据，密钥我们已经有了。然后随机数和附加认证数据去哪搞是个问题emmmm。根据<a href="http://ieee802.org/16/liaison/docs/80211-05_0123r1.pdf" target="_blank" rel="noopener">IEEE 802.11-04/0123r1</a> 33页说的</p>
+<ul>
+<li>Needs one fresh 128-bit key – Same 128-bit <ul>
+<li>Temporal key used by both AP and STA </li>
+<li>CBC-MAC IV, CTR constructions make this valid</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Nonce (A0, B0) construction in CCMP’s use of CCM:<ul>
+<li>A0 = Tag0 || 0x00 || Transmit-Address || Frame-Sequence-Number </li>
+<li>B0 = Tag1 || 0x00 || Transmit-Address || Frame-Sequence-Number </li>
+<li>Transmit-address is 6 octets</li>
+<li>Frame-Sequence-Number is 8 octets and includes the QoS Priority </li>
+<li>Sequence-Number must be sequential within a single MSDU<br>emmmmmmmmm</li>
+</ul>
+</li>
+</ul>
+<p>未完待续…</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单网管协议"><span class="toc-number">1.</span> <span class="toc-text">简单网管协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#炫酷的战队Logo"><span class="toc-number">2.</span> <span class="toc-text">炫酷的战队Logo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scan"><span class="toc-number">3.</span> <span class="toc-text">Scan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程登录协议"><span class="toc-number">4.</span> <span class="toc-text">远程登录协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell流量分析"><span class="toc-number">5.</span> <span class="toc-text">shell流量分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webshell分析"><span class="toc-number">6.</span> <span class="toc-text">webshell分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flag"><span class="toc-number">7.</span> <span class="toc-text">flag</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc100"><span class="toc-number">8.</span> <span class="toc-text">misc100</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#you-need-python"><span class="toc-number">9.</span> <span class="toc-text">you_need_python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Struts2漏洞"><span class="toc-number">10.</span> <span class="toc-text">Struts2漏洞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WPA2"><span class="toc-number">11.</span> <span class="toc-text">WPA2</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&text=jarvis OJ writeup (Misc部分)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&is_video=false&description=jarvis OJ writeup (Misc部分)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jarvis OJ writeup (Misc部分)&body=Check out this article: https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&title=jarvis OJ writeup (Misc部分)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/07/09/jarvis-OJ-writeup-Misc部分/&name=jarvis OJ writeup (Misc部分)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Lkerenl
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
