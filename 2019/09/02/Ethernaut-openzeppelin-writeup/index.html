@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="0xFF 前言在做jarvisOJ的Crypto时有一道babybank, 看的我是一脸懵逼, 最后了解到这里有一些开源的智能合约的wargame. 于是准备详细了解下这方面的知识.下边是一些名词解释吧. 智能合约智能合约简单的说就是就是一串部署在区块链上的代码, 运行于集成在一条区块链系统上集成的虚拟机里, 用来更详细的智能合约请看这里:  智能合约和 DApp  智能合约的脆弱性我们知道了智能">
+<meta name="keywords" content="block chain,smart contracts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ethernaut openzeppelin writeup">
+<meta property="og:url" content="https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/index.html">
+<meta property="og:site_name" content="Lkerenl&#39;Blog 你的本质">
+<meta property="og:description" content="0xFF 前言在做jarvisOJ的Crypto时有一道babybank, 看的我是一脸懵逼, 最后了解到这里有一些开源的智能合约的wargame. 于是准备详细了解下这方面的知识.下边是一些名词解释吧. 智能合约智能合约简单的说就是就是一串部署在区块链上的代码, 运行于集成在一条区块链系统上集成的虚拟机里, 用来更详细的智能合约请看这里:  智能合约和 DApp  智能合约的脆弱性我们知道了智能">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-07T17:41:57.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ethernaut openzeppelin writeup">
+<meta name="twitter:description" content="0xFF 前言在做jarvisOJ的Crypto时有一道babybank, 看的我是一脸懵逼, 最后了解到这里有一些开源的智能合约的wargame. 于是准备详细了解下这方面的知识.下边是一些名词解释吧. 智能合约智能合约简单的说就是就是一串部署在区块链上的代码, 运行于集成在一条区块链系统上集成的虚拟机里, 用来更详细的智能合约请看这里:  智能合约和 DApp  智能合约的脆弱性我们知道了智能">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Ethernaut openzeppelin writeup</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/10/12/华为网络安全工程师面试/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/07/26/Glibc源码分析-基础知识/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&text=Ethernaut openzeppelin writeup"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&is_video=false&description=Ethernaut openzeppelin writeup"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ethernaut openzeppelin writeup&body=Check out this article: https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&name=Ethernaut openzeppelin writeup&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0xFF-前言"><span class="toc-number">1.</span> <span class="toc-text">0xFF 前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#智能合约"><span class="toc-number">1.1.</span> <span class="toc-text">智能合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能合约的脆弱性"><span class="toc-number">1.2.</span> <span class="toc-text">智能合约的脆弱性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eth与gas"><span class="toc-number">1.3.</span> <span class="toc-text">eth与gas</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eth"><span class="toc-number">1.3.1.</span> <span class="toc-text">eth</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gas"><span class="toc-number">1.3.2.</span> <span class="toc-text">gas</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solidity"><span class="toc-number">1.4.</span> <span class="toc-text">solidity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x0-level-0"><span class="toc-number">2.</span> <span class="toc-text">0x0 level 0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x1-fallback"><span class="toc-number">3.</span> <span class="toc-text">0x1 fallback</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Ethernaut openzeppelin writeup
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lkerenl'Blog 你的本质</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-01T16:28:13.000Z" itemprop="datePublished">2019-09-02</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/block-chain/">block chain</a>, <a class="tag-link" href="/tags/smart-contracts/">smart contracts</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="0xFF-前言"><a href="#0xFF-前言" class="headerlink" title="0xFF 前言"></a>0xFF 前言</h2><p>在做jarvisOJ的Crypto时有一道babybank, 看的我是一脸懵逼, 最后了解到<a href="https://ethernaut.openzeppelin.com" target="_blank" rel="noopener">这里</a>有一些开源的智能合约的wargame. 于是准备详细了解下这方面的知识.<br>下边是一些名词解释吧.</p>
+<h3 id="智能合约"><a href="#智能合约" class="headerlink" title="智能合约"></a>智能合约</h3><p>智能合约简单的说就是就是一串部署在区块链上的代码, 运行于集成在一条区块链系统上集成的虚拟机里, 用来<br>更详细的智能合约请看这里:</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/5e7df3902957" target="_blank" rel="noopener">智能合约和 DApp</a></li>
+</ul>
+<h3 id="智能合约的脆弱性"><a href="#智能合约的脆弱性" class="headerlink" title="智能合约的脆弱性"></a>智能合约的脆弱性</h3><p>我们知道了智能合约就是有人编写的一串程序, 那么就会有漏洞目前已知的包括切不限于:</p>
+<ul>
+<li>整数溢出</li>
+<li>逻辑问题</li>
+<li>越权访问</li>
+<li>拒绝服务</li>
+<li>函数误用</li>
+<li>…<br>一系列问题, 而且因为以太坊自身问题, 合约一旦部署就不能被修改.</li>
+</ul>
+<h3 id="eth与gas"><a href="#eth与gas" class="headerlink" title="eth与gas"></a>eth与gas</h3><h4 id="eth"><a href="#eth" class="headerlink" title="eth"></a>eth</h4><p>ether这个好理解, 就是以太坊上用的RMB.</p>
+<h4 id="gas"><a href="#gas" class="headerlink" title="gas"></a>gas</h4><p>gas在我的理解里就是类似燃料的东西, 可以通过eth购买, 用户每次执行一个DApp都要支付一定gas, 而支付gas的多少是由DApp的功能逻辑的复杂成的决定的.<br>因为在以太坊上运行一个程序,要在每个节点都进行相同的运算以验证其输出, 所以为了防止有些用户进行密集型运算占用大量资源,所以以太坊的创建者为以太坊伤的资源限制了价格.</p>
+<h3 id="solidity"><a href="#solidity" class="headerlink" title="solidity"></a>solidity</h3><p>solidity是以太坊的智能合约变成语言, 在对智能合约脆弱性进行攻击之前我们需要先了解一些关于solidity的基础知识.<br>这里我推荐<a href="https://solidity.readthedocs.io/" target="_blank" rel="noopener">官方文档</a>、或者这个小游戏<a href="https://cryptozombies.io" target="_blank" rel="noopener">cryptozombies</a>.</p>
+<h2 id="0x0-level-0"><a href="#0x0-level-0" class="headerlink" title="0x0 level 0"></a>0x0 level 0</h2><p>这一关只是一些基础知识,教我们这些没接触过Ethernaut的人使用方式.还有一些常用命令:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">player <span class="comment">// 查看地址</span></span><br><span class="line"><span class="keyword">await</span> getBalance(player) <span class="comment">//查看余额</span></span><br><span class="line">ethernaut <span class="comment">//查看ethernaut智能合约,这是这个game的主要使用的合约</span></span><br><span class="line"><span class="keyword">await</span> ethernaut.owner() <span class="comment">// 查看ethernaut合约的所有者</span></span><br></pre></td></tr></table></figure>
+
+<p>没什么难点,跟着一路点就行了.</p>
+<ol>
+<li><p>点击<code>Get new instance</code>开始游戏</p>
+</li>
+<li><p>执行<code>await contract.info()</code><br> -&gt; “You will find what you need in info1().” </p>
+</li>
+<li><p>执行<code>await contract.info1()</code><br> -&gt; “Try info2(), but with “hello” as a parameter.”</p>
+</li>
+<li><p>执行<code>await contract.info2(&quot;hello&quot;)</code><br> -&gt; “The property infoNum holds the number of the next info method to call.”</p>
+</li>
+<li><p>执行<code>await contract.infoNum()</code><br> -&gt; 查看数组发现下个方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">await contract.infoNum()</span><br><span class="line">t &#123;s: 1, e: 1, c: Array(1)&#125;</span><br><span class="line">    c: Array(1)</span><br><span class="line">        0: 42</span><br><span class="line">        length: 1</span><br><span class="line">    __proto__: Array(0)</span><br><span class="line">    e: 1</span><br><span class="line">    s: 1</span><br><span class="line">    __proto__: Object</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行<code>await contract.info42()</code><br> -&gt; “theMethodName is the name of the next method.”</p>
+</li>
+<li><p>执行<code>await contract.theMethodName()</code><br> -&gt; “The method name is method7123949.”</p>
+</li>
+<li><p>执行<code>await contract.method7123949()</code><br> -&gt; “If you know the password, submit it to authenticate().”</p>
+</li>
+<li><p>提示要获取密码查看智能合约的abi发现:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">contract.abi</span><br><span class="line">    (11) [&#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;, &#123;…&#125;]</span><br><span class="line">    0: &#123;constant: true, inputs: Array(0), name: &quot;password&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    1: &#123;constant: true, inputs: Array(0), name: &quot;infoNum&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    2: &#123;constant: true, inputs: Array(0), name: &quot;theMethodName&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    3: &#123;inputs: Array(1), payable: false, stateMutability: &quot;nonpayable&quot;, type: &quot;constructor&quot;&#125;</span><br><span class="line">    4: &#123;constant: true, inputs: Array(0), name: &quot;info&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    5: &#123;constant: true, inputs: Array(0), name: &quot;info1&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    6: &#123;constant: true, inputs: Array(1), name: &quot;info2&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    7: &#123;constant: true, inputs: Array(0), name: &quot;info42&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    8: &#123;constant: true, inputs: Array(0), name: &quot;method7123949&quot;, outputs: Array(1), payable: false, …&#125;</span><br><span class="line">    9: &#123;constant: false, inputs: Array(1), name: &quot;authenticate&quot;, outputs: Array(0), payable: false, …&#125;</span><br><span class="line">    10: &#123;constant: true, inputs: Array(0), name: &quot;getCleared&quot;, outputs: Array(1), payable: false, …&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 发现password()方法,调用之<br> <code>await contract.password()</code> -&gt; “ethernaut0”<br> 将之使用authenticate()方法发送.<br> <code>await contract.authenticate(&quot;ethernaut0&quot;)</code></p>
+</li>
+<li><p>转账之后等一会,会发现<code>Submit instance</code>完成level0</p>
+</li>
+</ol>
+<h2 id="0x1-fallback"><a href="#0x1-fallback" class="headerlink" title="0x1 fallback"></a>0x1 fallback</h2>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0xFF-前言"><span class="toc-number">1.</span> <span class="toc-text">0xFF 前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#智能合约"><span class="toc-number">1.1.</span> <span class="toc-text">智能合约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#智能合约的脆弱性"><span class="toc-number">1.2.</span> <span class="toc-text">智能合约的脆弱性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eth与gas"><span class="toc-number">1.3.</span> <span class="toc-text">eth与gas</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#eth"><span class="toc-number">1.3.1.</span> <span class="toc-text">eth</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gas"><span class="toc-number">1.3.2.</span> <span class="toc-text">gas</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#solidity"><span class="toc-number">1.4.</span> <span class="toc-text">solidity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x0-level-0"><span class="toc-number">2.</span> <span class="toc-text">0x0 level 0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x1-fallback"><span class="toc-number">3.</span> <span class="toc-text">0x1 fallback</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&text=Ethernaut openzeppelin writeup"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&is_video=false&description=Ethernaut openzeppelin writeup"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ethernaut openzeppelin writeup&body=Check out this article: https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&title=Ethernaut openzeppelin writeup"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/09/02/Ethernaut-openzeppelin-writeup/&name=Ethernaut openzeppelin writeup&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Lkerenl
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="摘要近年来, 由于其能够生成高覆盖率的测试套件并能够在复杂的软件应用程序中发现深层错误, 因此对软件测试的符号执行产生了浓厚的兴趣. 在本文中, 我们该市了现代符号执行技术, 讨论了他们在路径探索, 约束解决和内存建模方面的主要挑战, 并讨论了主要从作者自己的工作中得出的几种解决方案. 引言近年来，符号执行作为一种用于生成高覆盖率测试套件并在复杂软件应用程序中查找深层错误的有效技术，引起了广泛关注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbolic Execution for Software Testing: Three Decades Later 翻译">
+<meta property="og:url" content="https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/index.html">
+<meta property="og:site_name" content="Lkerenl&#39;Blog 你的本质">
+<meta property="og:description" content="摘要近年来, 由于其能够生成高覆盖率的测试套件并能够在复杂的软件应用程序中发现深层错误, 因此对软件测试的符号执行产生了浓厚的兴趣. 在本文中, 我们该市了现代符号执行技术, 讨论了他们在路径探索, 约束解决和内存建模方面的主要挑战, 并讨论了主要从作者自己的工作中得出的几种解决方案. 引言近年来，符号执行作为一种用于生成高覆盖率测试套件并在复杂软件应用程序中查找深层错误的有效技术，引起了广泛关注">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-20T15:15:11.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Symbolic Execution for Software Testing: Three Decades Later 翻译">
+<meta name="twitter:description" content="摘要近年来, 由于其能够生成高覆盖率的测试套件并能够在复杂的软件应用程序中发现深层错误, 因此对软件测试的符号执行产生了浓厚的兴趣. 在本文中, 我们该市了现代符号执行技术, 讨论了他们在路径探索, 约束解决和内存建模方面的主要挑战, 并讨论了主要从作者自己的工作中得出的几种解决方案. 引言近年来，符号执行作为一种用于生成高覆盖率测试套件并在复杂软件应用程序中查找深层错误的有效技术，引起了广泛关注">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Symbolic Execution for Software Testing: Three Decades Later 翻译</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/10/19/angr/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&text=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&is_video=false&description=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Symbolic Execution for Software Testing: Three Decades Later 翻译&body=Check out this article: https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&name=Symbolic Execution for Software Testing: Three Decades Later 翻译&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#古典符号执行概述"><span class="toc-number">3.</span> <span class="toc-text">古典符号执行概述</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Symbolic Execution for Software Testing: Three Decades Later 翻译
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lkerenl'Blog 你的本质</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-20T10:35:40.000Z" itemprop="datePublished">2019-10-20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>近年来, 由于其能够生成高覆盖率的测试套件并能够在复杂的软件应用程序中发现深层错误, 因此对软件测试的符号执行产生了浓厚的兴趣. 在本文中, 我们该市了现代符号执行技术, 讨论了他们在路径探索, 约束解决和内存建模方面的主要挑战, 并讨论了主要从作者自己的工作中得出的几种解决方案.</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>近年来，符号执行作为一种用于生成高覆盖率测试套件并在复杂软件应用程序中查找深层错误的有效技术，引起了广泛关注。尽管符号执行背后的关键思想是在三十年多以前引入的，但由于约束可满足性的重大进步以及结合了具体和符号执行的可伸缩性更强的动态方法，才使它成为现实。在本文中，我们概述了现代符号执行技术，并讨论了它们在路径探索，约束解决和内存建模方面的挑战。请注意，我们的目的不是在此提供对该地区现有工作的全面调查，而是选择使用主要来自作者自己的工作的示例来说明一些关键挑战和建议的解决方案。<br>在软件测试中，符号执行的主要目标是在给定的时间内探索尽可能多的不同程序路径，并为每个路径生成一组行使该路径的具体输入值，并检查是否存在各种错误，包括声明冲突，未捕获的异常，安全漏洞和内存损坏。生成具体测试输入的能力是符号执行的主要优势之一：从测试生成的角度来看，它允许创建高覆盖率的测试套件，而从错误查找的角度来看，它为开发人员提供了触发错误的具体输入，可独立于生成错误的符号执行工具来用于确认和调试错误。<br>此外，请注意，就查找给定程序路径上的错误而言，符号执行比传统的动态执行技术（如由诸如Valgrind或Purify之类的流行工具所实现的那些技术）更强大，后者取决于触发错误的具体输入的可用性。最后，与某些其他程序分析技术不同，符号执行不限于查找诸如缓冲区溢出之类的通用错误，而是可以推断出更高级别的程序属性，例如复杂的程序断言。</p>
+<h2 id="古典符号执行概述"><a href="#古典符号执行概述" class="headerlink" title="古典符号执行概述"></a>古典符号执行概述</h2><p>符号执行的关键思想是使用符号值而不是具体的数据值作为输入，并在符号输入值上将程序变量的值表示为符号表达式。结果，程序计算的输出值表示为符号输入值的函数。在软件测试中，符号执行用于为程序的每个执行路径生成测试输入。执行路径是一个true和false的序列，其中序列中第i个位置的true（分别为false）值表示沿执行路径遇到的第i个条件语句采用了“ then”（分别为“else”）科。可以使用称为执行树的树来表示程序的所有执行路径。例如，图1中的函数testme（）具有三个执行路径，它们形成了图2所示的执行树。例如，可以通过在输入{x = 0，y = 1上运行程序）来执行这些路径。 }，{x = 2，y = 1}和{x = 30，y = 15}。目的是生成这样的一组输入，以便通过在这些输入上运行程序，可以完全探究一次取决于符号输入值（或在给定时间预算内尽可能多）的所有执行路径。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引言"><span class="toc-number">2.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#古典符号执行概述"><span class="toc-number">3.</span> <span class="toc-text">古典符号执行概述</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&text=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&is_video=false&description=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Symbolic Execution for Software Testing: Three Decades Later 翻译&body=Check out this article: https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&title=Symbolic Execution for Software Testing: Three Decades Later 翻译"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/10/20/Symbolic-Execution-for-Software-Testing-Three-Decades-Later-翻译/&name=Symbolic Execution for Software Testing: Three Decades Later 翻译&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Lkerenl
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

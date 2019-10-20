@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="面试要求 计算机、软件、信息安全、密码学、网络安全技术与工程、人工智能、数学 等相关安全专业本科及以上学历，网络安全相关专业优先； 熟悉网络安全、信息安全等相关领域：如端口、服务漏洞扫描、程序漏洞分析检测、权限管理、入侵和攻击分析等；    具备扎实全面的计算机、网络（TCP/IP）等方面的基础知识； 熟悉主流编程语言之一：Java/ Python/C/C++/ C#/ PHP/ Shell等编程">
+<meta name="keywords" content="note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为网络安全工程师面试">
+<meta property="og:url" content="https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/index.html">
+<meta property="og:site_name" content="Lkerenl&#39;Blog 你的本质">
+<meta property="og:description" content="面试要求 计算机、软件、信息安全、密码学、网络安全技术与工程、人工智能、数学 等相关安全专业本科及以上学历，网络安全相关专业优先； 熟悉网络安全、信息安全等相关领域：如端口、服务漏洞扫描、程序漏洞分析检测、权限管理、入侵和攻击分析等；    具备扎实全面的计算机、网络（TCP/IP）等方面的基础知识； 熟悉主流编程语言之一：Java/ Python/C/C++/ C#/ PHP/ Shell等编程">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-10-12T08:29:01.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="华为网络安全工程师面试">
+<meta name="twitter:description" content="面试要求 计算机、软件、信息安全、密码学、网络安全技术与工程、人工智能、数学 等相关安全专业本科及以上学历，网络安全相关专业优先； 熟悉网络安全、信息安全等相关领域：如端口、服务漏洞扫描、程序漏洞分析检测、权限管理、入侵和攻击分析等；    具备扎实全面的计算机、网络（TCP/IP）等方面的基础知识； 熟悉主流编程语言之一：Java/ Python/C/C++/ C#/ PHP/ Shell等编程">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>华为网络安全工程师面试</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/10/19/angr/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/09/02/Ethernaut-openzeppelin-writeup/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&text=华为网络安全工程师面试"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&is_video=false&description=华为网络安全工程师面试"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=华为网络安全工程师面试&body=Check out this article: https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&name=华为网络安全工程师面试&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#面试要求"><span class="toc-number">1.</span> <span class="toc-text">面试要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一面-技术面"><span class="toc-number">2.</span> <span class="toc-text">一面:技术面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二面-技术面"><span class="toc-number">3.</span> <span class="toc-text">二面:技术面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三面-总管面"><span class="toc-number">4.</span> <span class="toc-text">三面:总管面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        华为网络安全工程师面试
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Lkerenl'Blog 你的本质</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-10-12T07:05:36.000Z" itemprop="datePublished">2019-10-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/note/">note</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="面试要求"><a href="#面试要求" class="headerlink" title="面试要求"></a>面试要求</h3><ol>
+<li>计算机、软件、信息安全、密码学、网络安全技术与工程、人工智能、数学 等相关安全专业本科及以上学历，网络安全相关专业优先；</li>
+<li>熟悉网络安全、信息安全等相关领域：如端口、服务漏洞扫描、程序漏洞分析检测、权限管理、入侵和攻击分析等；   </li>
+<li>具备扎实全面的计算机、网络（TCP/IP）等方面的基础知识；</li>
+<li>熟悉主流编程语言之一：Java/ Python/C/C++/ C#/ PHP/ Shell等编程语言、脚本语言，熟悉Linux系统和主流数据库，了解主流的互联网安全技术和安全产品，如网络安全，主机安全，应用安全，密码技术，以及防火墙、入侵检测和防病毒等安全产品；</li>
+<li>对安全攻防、渗透测试（如DDOS攻防、提权等）等相关安全专题有相关项目经历，或具有华为公司系列认证证书（HCIE/HCNP/HCNA）、业界网络安全证书者优先；</li>
+<li>有网络安全实习经验或网络安全大赛（如CTF）经验优先</li>
+</ol>
+<h3 id="一面-技术面"><a href="#一面-技术面" class="headerlink" title="一面:技术面"></a>一面:技术面</h3><ol>
+<li>自我介绍</li>
+<li>cia有啥</li>
+<li>pwn主要是对哪个cia造成威胁</li>
+<li>画x86_64/gcc的函数调用前后的栈变化.</li>
+<li>加密分类,为什么这么分,为什么有非对称还要对称(即有什么区别、优劣).</li>
+<li>非对称加密有什么,为什么能做加密.</li>
+<li>tcp模型有几层,snmp在第几层</li>
+<li>冲突检测</li>
+<li>linux找文件名包含.txt文件内容含有pass的文件</li>
+<li>Aes加密有什么密码学中常用的方法</li>
+<li>Aes的加密模式.</li>
+<li>cbc和ecb两种模式有什么区别</li>
+<li>Aes脆弱性.ctf中常见的攻击.</li>
+<li>造成uaf的原因与危害</li>
+<li>分段与分页</li>
+<li>内核态与用户态通讯</li>
+<li>shell命令注入</li>
+<li>PE FA怎么变到RVA的</li>
+<li>rebasing的过程</li>
+<li>做一套题.(以下记录题目中我记得的考点)<ul>
+<li>sync flood 需要什么</li>
+<li>给明文和密文判断aes加密模式</li>
+<li>ssh、ftp、http、memcached、redis、mysql使用的端口</li>
+<li>几个伪协议不会造成xss的有啥</li>
+<li>ASLR是为了防御什么攻击</li>
+<li>安卓用一个啥协议读通讯录</li>
+<li>安卓逆向框架有啥</li>
+<li>ubuntu 16.04 4.15内核 x86_64 gcc 5.4.0环境,获取flag 写exp<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">char</span> flag[<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">create_flag</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> fd;</span><br><span class="line">	fd = open(fd,O_RDONLY);</span><br><span class="line">	open(fd,flag,<span class="number">10</span>);</span><br><span class="line">	close(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> something[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">char</span> buf[] = <span class="string">"%s"</span>;</span><br><span class="line">	create_flag();</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%10s"</span>,something);</span><br><span class="line">	<span class="built_in">printf</span>(buf,something);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="二面-技术面"><a href="#二面-技术面" class="headerlink" title="二面:技术面"></a>二面:技术面</h3><p>这一面是真的难:( 那面试官怼的我嗦不粗发.但是也学到挺多新的东西</p>
+<ol>
+<li>自我介绍</li>
+<li>heap overlap如何leak libc</li>
+<li>one_gadget约束都失效的情况下如何利用</li>
+<li>二层最小的帧是多少字节</li>
+<li>除了ida与gdb有没有用过其他工具</li>
+<li>gdb脚本写过么</li>
+<li>ida写过插件么</li>
+<li>elf文件头有多少个字节</li>
+<li>如何给elf新加段</li>
+<li>patch怎么做</li>
+<li>Web了解多少</li>
+<li>sql左右连接的关键字</li>
+<li>xxe原理与危害</li>
+<li>angr是不是一定能到达目的块,为什么</li>
+<li>符号执行了解多少</li>
+<li>AFL用过没</li>
+<li>fuzzing写过没</li>
+<li>ctf中遇到比较难的问题</li>
+<li>内核了解多少</li>
+<li>有没有复现过cve</li>
+<li>qume如何创建磁盘映像</li>
+<li>做一套题<ul>
+<li>mybatis使用啥能完全防御sql注入</li>
+<li>crlf注入危害</li>
+<li>c指针</li>
+<li>iptables怎么清理所有链上的规则</li>
+<li>arm栈调用用哪个寄存器</li>
+<li>一个没有函数名的函数如何还原函数名</li>
+</ul>
+</li>
+</ol>
+<h3 id="三面-总管面"><a href="#三面-总管面" class="headerlink" title="三面:总管面"></a>三面:总管面</h3><ol>
+<li>自我介绍</li>
+<li>对协会管理</li>
+<li>对协会新人培养</li>
+<li>ctf线下赛分工,你为团队做了什么贡献</li>
+<li>有没有去企业实习过</li>
+<li>对华为文化的理解</li>
+<li>对加班的看法</li>
+<li>职业规划</li>
+<li>ctf与真实环境的区别</li>
+<li>这个岗位是干嘛的</li>
+<li>爱好</li>
+<li>遇到的挫折以及怎么克服的</li>
+<li>ctf中遇到比较难的问题或者有趣的问题</li>
+<li>还有什么问题</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><pre><code>这次面试是我准备时间比较长的一次了,但是我准备的都没有用到…还是靠一个平时积累,现场随机应变.几场面试下来感觉面试体验还是挺好的,平均一场面试一到一个半小时左右,面试官们都挺有意思的,就跟一般聊天的氛围差不多,我也学到了挺多东西,也知道了自己听过不足.感觉面试这种,不要害怕说错,但是一定要把你会的你知道的相关的都说出来.</code></pre>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#面试要求"><span class="toc-number">1.</span> <span class="toc-text">面试要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一面-技术面"><span class="toc-number">2.</span> <span class="toc-text">一面:技术面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二面-技术面"><span class="toc-number">3.</span> <span class="toc-text">二面:技术面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三面-总管面"><span class="toc-number">4.</span> <span class="toc-text">三面:总管面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&text=华为网络安全工程师面试"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&is_video=false&description=华为网络安全工程师面试"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=华为网络安全工程师面试&body=Check out this article: https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&title=华为网络安全工程师面试"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://lkerenl.github.io/2019/10/12/华为网络安全工程师面试/&name=华为网络安全工程师面试&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Lkerenl
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/tags/">Tags</a></li>
+         
+          <li><a href="/categories/">Categories</a></li>
+         
+          <li><a href="/links/">Links</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
